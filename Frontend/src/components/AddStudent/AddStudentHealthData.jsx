@@ -27,8 +27,12 @@ class AddStudentHealthData extends Component {
   addStudent = async e => {
     e.preventDefault();
     try {
+      let customerId=""
+      if(this.state?.customerData.length > 0){
+      customerId= this.state.customerId == "" ?  this.state?.customerData[0]._id : this.state.customerId
+      }
       const newStudent = await axios.post("/api/customers/health", {
-          customerId: this.state.customerId,
+          customerId: customerId,
           date: this.state.date,
           steps: this.state.steps
         }
